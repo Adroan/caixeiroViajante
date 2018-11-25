@@ -21,7 +21,7 @@ public class CaixeiroViajante {
 
     private static int cidadeInicial = 0;
 
-    private static String[] nomes = {"Absolut", "Brahma", "Corote", "Dreher", "Eisenbahn", "Fanta uva", "Graspa"};
+    private static String[] nomes = {"Al Kharid", "Brimhaven", "Camelot", "Darkmeyer", "Essim", "Faladore", "Georgopol","Hollow's","IO", "Jotunheim","kiev","Los Santos","Mount Chiliad","Normandia","Orpheus"};
 
 //    private static int[][] matrizAdjacentes
 //            = {{0, 494, 366, 266, 173, 140, 146},
