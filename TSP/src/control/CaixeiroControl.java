@@ -91,11 +91,9 @@ public class CaixeiroControl extends JPanel implements ActionListener {
                 graficos.drawImage(c.getImagem(), c.getX() - 10, c.getY() - 10, this);
                 if (indiceInicial == i) {
                     graficos.setColor(Color.green);
-                    graficos.setStroke(dashed);
                     graficos.drawString("" + i + " = " + nome[i], c.getX(), c.getY() - 20);
                 } else {
                     graficos.setColor(Color.red);
-                    graficos.setStroke(dashed);
                     graficos.drawString("" + i + " = " + nome[i], c.getX(), c.getY() - 20);
                 }
 
@@ -110,6 +108,7 @@ public class CaixeiroControl extends JPanel implements ActionListener {
 
                     } else {
                         graficos.setColor(Color.blue);
+                        graficos.setStroke(dashed);
                         graficos.draw(new Line2D.Double(origem.getX(), origem.getY(), destino.getX(), destino.getY()));
                     }
                 }
@@ -142,11 +141,12 @@ public class CaixeiroControl extends JPanel implements ActionListener {
                 graficos.draw(new Line2D.Double(cauda.getX(), cauda.getY(), inicio.getX(), inicio.getY()));
                 km += cv.matrizAdjacentes[cauda.INDICE][inicio.INDICE];
                 km += cv.getKm();
-                JOptionPane.showMessageDialog(this, "Retornou para a primeira cidade: " + atual.getNome() + 
-                                                            "\nDistância percorrida: " + km + "km");
                 graficos.drawString("Kilômetros percorridos: " + km, 5, 30);
                 graficos.setColor(Color.green);
                 graficos.drawString("tempo de execução: " + cv.getTempoExecucao() + "ms", 5, 45);
+                JOptionPane.showMessageDialog(this, "Retornou para a primeira cidade: " + cauda.getNome() + 
+                                                            "\nDistância percorrida: " + km + "km");
+                
             }
 
             graficos.setColor(Color.blue);
