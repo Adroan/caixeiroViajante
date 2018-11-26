@@ -20,8 +20,9 @@ public class Main extends JFrame {
 
 	public Main() {
 		construirMenuBar();
-		construirCaixeiro();
-		configurarTela();
+                construirCaixeiro();
+                configurarTela();
+		
 	}
 
 	public static void main(String[] args) {
@@ -37,7 +38,7 @@ public class Main extends JFrame {
 		criarGrafo.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// Ação do menu criar grafo
+				  
 			}
 		});
 
@@ -74,7 +75,7 @@ public class Main extends JFrame {
 	}
 
 	private void configurarTela() {
-		setSize(1000, 1000);
+		setSize(1080, 1080);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);

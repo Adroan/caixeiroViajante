@@ -1,5 +1,6 @@
 package control;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -26,7 +27,7 @@ public class CaixeiroControl extends JPanel implements ActionListener {
 
 	private Timer timer;
 
-	private List<Cidade> cidades;
+	private ArrayList<Cidade> cidades;
 
 	private boolean emExecucao;
 
@@ -39,11 +40,10 @@ public class CaixeiroControl extends JPanel implements ActionListener {
 		setFocusable(true);
 		setDoubleBuffered(true);
 
-		ImageIcon referencia = new ImageIcon(Main.class.getResource("/res/fundo.png"));
+		ImageIcon referencia = new ImageIcon(Main.class.getResource("/res/fundoBranco.png"));
 		fundo = referencia.getImage();
 
 		emExecucao = true;
-
 		inicializarCidades();
 
 		timer = new Timer(5, this);
@@ -51,24 +51,32 @@ public class CaixeiroControl extends JPanel implements ActionListener {
 	}
 
 	public void inicializarCidades() {
-		cidades = new ArrayList<>();
-                CaixeiroViajante cv = new CaixeiroViajante();
-                Cidade cidade;
-		for (int i = 0; i < coordenadas.length; i++) {
-                    cidade = cv.cidades.get(i);
-                    cidades.add(new Cidade(cidade.getINDICE(),cidade.getNome(),coordenadas[i][0], coordenadas[i][1]));
-		}
+		CaixeiroViajante cv = new CaixeiroViajante();
+                cidades = cv.criarCidades();
 	}
 
 	public void paint(Graphics g) {
 		Graphics2D graficos = (Graphics2D) g;
 		graficos.drawImage(fundo, 0, 0, null);
-                ImageIcon referencia = new ImageIcon(Main.class.getResource("/res/nave.png"));
-		if (emExecucao) {
-			for (int i = 0; i < cidades.size(); i++) {
-				Cidade c = (Cidade) cidades.get(i);
+                ImageIcon referencia = new ImageIcon(Main.class.getResource("/res/vertice.png"));
+                CaixeiroViajante cv = new CaixeiroViajante();
+		String[] nome = cv.getNomes();
+                float dash1[] = {10.0f};
+                // Cria um padrão pontilhado para as linhas
+                BasicStroke dashed = new BasicStroke(1.0f,
+                        BasicStroke.CAP_BUTT,
+                        BasicStroke.JOIN_MITER,
+                        10.0f, dash1, 0.0f);
+                if (emExecucao) {
+			// Desenhar vértices
+                        for (int i = 0; i < cidades.size(); i++) {
+				
+                                Cidade c = (Cidade) cidades.get(i);
                                 c.setImagem(referencia.getImage());
-				graficos.drawImage(c.getImagem(), c.getX(), c.getY(), this);
+				graficos.drawImage(c.getImagem(), c.getX()-10, c.getY()-10, this);
+                                graficos.setColor(Color.red);
+                                graficos.setStroke(dashed);
+                                graficos.drawString("" + i +" = " + nome[i],c.getX(), c.getY() - 20);
 			}
                         // Desenhar arestas
 			for (int i = 0; i < cidades.size(); i++) {
@@ -78,12 +86,13 @@ public class CaixeiroControl extends JPanel implements ActionListener {
                                     if((origem.getX() == destino.getX()) && (origem.getY() == destino.getY())){
                                         
                                     }else{
+                                        graficos.setColor(Color.blue);
                                         graficos.draw(new Line2D.Double(origem.getX(), origem.getY(), destino.getX(), destino.getY()));
                                     }
                                 }
                         }
                                 
-                        graficos.setColor(Color.black);
+                        graficos.setColor(Color.blue);
 			graficos.drawString("Cidades: " + cidades.size(), 5, 15);     
                                 
 			}else {
@@ -96,7 +105,8 @@ public class CaixeiroControl extends JPanel implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		repaint();
+		
 	}
+       
 
 }

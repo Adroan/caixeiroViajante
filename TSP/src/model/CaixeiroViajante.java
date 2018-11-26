@@ -18,7 +18,10 @@ public class CaixeiroViajante {
 
     private static int km = 0;
     public static ArrayList<Cidade> cidades = new ArrayList<Cidade>();
-
+    private int[][] coordenadas = { { 404, 974 }, { 607, 971 }, { 792, 888 },
+			{ 926, 736 }, { 987, 542 }, { 964, 341 }, { 861, 166 },
+			{ 696, 48 }, { 497, 8 }, { 299, 52 }, { 136, 172 }, { 36, 349 },
+			{ 17, 551 }, { 81, 743 }, { 218, 893 }};
     private static int cidadeInicial = 0;
 
     private static String[] nomes = {"Al Kharid", "Brimhaven", "Camelot", "Darkmeyer", "Essim", "Faladore", "Georgopol","Hollow's","IO", "Jotunheim","kiev","Los Santos","Mount Chiliad","Normandia","Orpheus"};
@@ -50,7 +53,12 @@ public class CaixeiroViajante {
     public CaixeiroViajante() {
     }
                                                     
-    
+    public ArrayList<Cidade> criarCidades(){
+        for(int i = 0; i < nomes.length; i++){
+            cidades.add(new Cidade(i,nomes[i],coordenadas[i][0], coordenadas[i][1]));
+        }
+        return cidades;
+    }
     
     
     private static ArrayList<Cidade> acharVizinho(Cidade nodo) {
@@ -122,4 +130,9 @@ public class CaixeiroViajante {
         Date acabou = new Date();
         System.out.println(acabou.getTime() - inicial.getTime()+" ms");
     }
+
+    public static String[] getNomes() {
+        return nomes;
+    }
+    
 }
