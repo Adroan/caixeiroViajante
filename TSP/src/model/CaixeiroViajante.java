@@ -18,10 +18,10 @@ public class CaixeiroViajante {
 
     private static int km = 0;
     public static ArrayList<Cidade> cidades = new ArrayList<Cidade>();
-    private int[][] coordenadas = { { 404, 974 }, { 607, 971 }, { 792, 888 },
-			{ 926, 736 }, { 987, 542 }, { 964, 341 }, { 861, 166 },
-			{ 696, 48 }, { 497, 8 }, { 299, 52 }, { 136, 172 }, { 36, 349 },
-			{ 17, 551 }, { 81, 743 }, { 218, 893 }};
+    private int[][] coordenadas = { { 404, 994 }, { 607, 991 }, { 792, 908 },
+			{ 926, 756 }, { 987, 562 }, { 964, 361 }, { 861, 186 },
+			{ 696, 68 }, { 497, 28 }, { 299, 72 }, { 136, 192 }, { 36, 369 },
+			{ 17, 571 }, { 81, 763 }, { 218, 913 }};
     private static int cidadeInicial = 0;
 
     private static String[] nomes = {"Al Kharid", "Brimhaven", "Camelot", "Darkmeyer", "Essim", "Faladore", "Georgopol","Hollow's","IO", "Jotunheim","kiev","Los Santos","Mount Chiliad","Normandia","Orpheus"};
