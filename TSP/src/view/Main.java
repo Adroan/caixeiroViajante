@@ -19,7 +19,8 @@ public class Main extends JFrame {
 
 
 	public Main() {
-		construirMenuBar();
+		
+                construirMenuBar();
                 construirCaixeiro();
                 configurarTela();
 		
@@ -34,19 +35,15 @@ public class Main extends JFrame {
 		menuBar.setBackground(Color.WHITE);
 		menuBar.setBorder(new LineBorder(Color.red));
 		JMenu menu = new JMenu("Caixeiro Viajante");
-		JMenuItem criarGrafo = new JMenuItem("Criar grafo");
-		criarGrafo.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				  
-			}
-		});
+		
 
 		JMenuItem mostrarSolucao = new JMenuItem("Mostrar Solucao");
 		mostrarSolucao.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// Pintar a solucao
+                            int indice = Integer.parseInt(JOptionPane.showInputDialog(null,"Digite o número correspondente a cidade inicial entre 0 e 14: \n"));
+                                  fazerBusca(indice); 
+                                  
 			}
 		});
                 
@@ -58,9 +55,9 @@ public class Main extends JFrame {
 			}
 		});
 
-		menu.add(criarGrafo);
-		menu.add(new JSeparator());
+		
 		menu.add(mostrarSolucao);
+                menu.add(new JSeparator());
                 menu.add(sair);
 		menuBar.add(menu);
 		setJMenuBar(menuBar);
@@ -73,6 +70,14 @@ public class Main extends JFrame {
 		add(cc);
 		return cc;
 	}
+        private JPanel fazerBusca(int indice){
+                            CaixeiroControl cc = new CaixeiroControl();
+                            cc.setGerarSolucao(true);
+                            cc.setIndiceInicial(indice);
+                            cc.repintar();
+                            add(cc);
+                            return cc;
+        }
 
 	private void configurarTela() {
 		setSize(1080, 1200);
