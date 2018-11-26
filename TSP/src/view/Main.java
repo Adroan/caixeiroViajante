@@ -75,7 +75,7 @@ public class Main extends JFrame {
 	}
 
 	private void configurarTela() {
-		setSize(1080, 1080);
+		setSize(1080, 1200);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
