@@ -5,7 +5,7 @@
  */
 package model;
 
-import control.Vertice;
+import control.Cidade;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 public class CaixeiroViajante {
 
     private static int km = 0;
-    private static ArrayList<Vertice> vertices = new ArrayList<Vertice>();
+    public static ArrayList<Cidade> cidades = new ArrayList<Cidade>();
 
     private static int cidadeInicial = 0;
 
@@ -46,19 +46,25 @@ public class CaixeiroViajante {
                                                 {427,758,275,58 ,297,272,846,515,65 ,36 ,138,857,0  ,803,49 },   
                                                 {880,62 ,431,292,453,252,56 ,591,714,361,818,683,803,0  ,15 },
                                                 {938,820,622,842,350,655,346,736,890,571,203,891,49 ,15 ,0  }};
+
+    public CaixeiroViajante() {
+    }
                                                     
-    private static ArrayList<Vertice> acharVizinho(Vertice nodo) {
-        ArrayList<Vertice> vizinho = new ArrayList<Vertice>();
+    
+    
+    
+    private static ArrayList<Cidade> acharVizinho(Cidade nodo) {
+        ArrayList<Cidade> vizinho = new ArrayList<Cidade>();
         for (int i = 0; i < matrizAdjacentes.length; i++) {
             if (matrizAdjacentes[nodo.INDICE][i] != 0) {
-                vizinho.add(vertices.get(i));
+                vizinho.add(cidades.get(i));
             }
         }
         return vizinho;
     }
 
-    private static Vertice foiVisitado(ArrayList<Vertice> vizinho) {
-        for (Vertice n : vizinho) {
+    private static Cidade foiVisitado(ArrayList<Cidade> vizinho) {
+        for (Cidade n : vizinho) {
             if (n.foiVisitado == false) {
                 return n;
             }
@@ -66,8 +72,8 @@ public class CaixeiroViajante {
         return null;
     }
 
-    private static Vertice maisPerto(ArrayList<Vertice> vizinho, Vertice inicio) {
-        Vertice n = foiVisitado(vizinho);
+    private static Cidade maisPerto(ArrayList<Cidade> vizinho, Cidade inicio) {
+        Cidade n = foiVisitado(vizinho);
         if (n == null) {
             return null;
         }
@@ -80,14 +86,14 @@ public class CaixeiroViajante {
         return n;
     }
 
-    private static void printaCaminho(Vertice entrada) {
-        Vertice cauda = entrada;
-        Vertice inicio = entrada;
-        Vertice atual = entrada;
+    private static void printaCaminho(Cidade entrada) {
+        Cidade cauda = entrada;
+        Cidade inicio = entrada;
+        Cidade atual = entrada;
         System.out.print(inicio.nome);
         inicio.foiVisitado = true;
         while (atual != null) {
-            ArrayList<Vertice> vizinho = acharVizinho(atual);
+            ArrayList<Cidade> vizinho = acharVizinho(atual);
             atual = maisPerto(vizinho, atual);
             if (atual != null) {
                 atual.foiVisitado = true;
@@ -100,10 +106,7 @@ public class CaixeiroViajante {
     }
     
     public static void main(String[] args) {
-        for (int i = 0; i < matrizAdjacentes.length; i++) {
-            vertices.add(new Vertice(i, nomes[i]));
-            
-        }
+        
         cidadeInicial = Integer.parseInt(JOptionPane.showInputDialog(null,"Digite o número correspondente a cidade inicial: \n" + 
                                                         "0 - Absolut \n" + 
                                                         "1 - Brahma \n" +
@@ -114,7 +117,7 @@ public class CaixeiroViajante {
                                                         "6 - Graspa \n"));
         Date inicial = new Date();
         System.out.println("Caminho:");
-        printaCaminho(vertices.get(cidadeInicial));
+        printaCaminho(cidades.get(cidadeInicial));
         System.out.print("\n\n Kilometros viajados:\t "+ km+"\n");
         Date acabou = new Date();
         System.out.println(acabou.getTime() - inicial.getTime()+" ms");

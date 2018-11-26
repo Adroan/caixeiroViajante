@@ -1,5 +1,6 @@
 package view;
 
+import control.CaixeiroControl;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,7 +20,7 @@ public class Main extends JFrame {
 
 	public Main() {
 		construirMenuBar();
-		construirFase();
+		construirCaixeiro();
 		configurarTela();
 	}
 
@@ -66,10 +67,10 @@ public class Main extends JFrame {
 		return menuBar;
 	}
 
-	private JPanel construirFase() {
-		Fase fase = new Fase();
-		add(fase);
-		return fase;
+	private JPanel construirCaixeiro() {
+		CaixeiroControl cc = new CaixeiroControl();
+		add(cc);
+		return cc;
 	}
 
 	private void configurarTela() {
