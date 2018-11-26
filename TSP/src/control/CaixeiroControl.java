@@ -71,6 +71,17 @@ public class CaixeiroControl extends JPanel implements ActionListener {
                 BasicStroke.CAP_BUTT,
                 BasicStroke.JOIN_MITER,
                 10.0f, dash1, 0.0f);
+        
+        if(!gerarSolucao){
+              int indice = Integer.parseInt(JOptionPane.showInputDialog(null,"Digite o número correspondente a cidade inicial entre 0 e 14: \n" + 
+                                                                             "Digite -1 para sair"));
+              indiceInicial = indice;
+              gerarSolucao = true;
+              if(indice == -1){
+                  JOptionPane.showMessageDialog(this,"Obrigado e volte sempre!");
+                  System.exit(0);
+              }
+            }
         if (emExecucao) {
             // Desenhar vértices
             for (int i = 0; i < cidades.size(); i++) {
@@ -104,16 +115,7 @@ public class CaixeiroControl extends JPanel implements ActionListener {
                 }
             }
 
-            if(!gerarSolucao){
-              int indice = Integer.parseInt(JOptionPane.showInputDialog(null,"Digite o número correspondente a cidade inicial entre 0 e 14: \n" + 
-                                                                             "Digite -1 para sair"));
-              indiceInicial = indice;
-              gerarSolucao = true;
-              if(indice == -1){
-                  JOptionPane.showMessageDialog(this,"Obrigado e volte sempre!");
-                  System.exit(0);
-              }
-            }
+            
             
             
             
@@ -132,7 +134,7 @@ public class CaixeiroControl extends JPanel implements ActionListener {
                         graficos.setStroke(new BasicStroke(2.5f));
                         graficos.setColor(Color.red);
                         JOptionPane.showMessageDialog(this, "Próxima cidade escolhida: " + atual.getNome() + 
-                                                            "\nDistância percorrida: " + cv.getKm());
+                                                            "\nDistância percorrida: " + cv.getKm() + "km");
                         graficos.draw(new Line2D.Double(cauda.getX(), cauda.getY(), atual.getX(), atual.getY()));
                         cauda = atual;                   
                     }
@@ -140,6 +142,8 @@ public class CaixeiroControl extends JPanel implements ActionListener {
                 graficos.draw(new Line2D.Double(cauda.getX(), cauda.getY(), inicio.getX(), inicio.getY()));
                 km += cv.matrizAdjacentes[cauda.INDICE][inicio.INDICE];
                 km += cv.getKm();
+                JOptionPane.showMessageDialog(this, "Retornou para a primeira cidade: " + atual.getNome() + 
+                                                            "\nDistância percorrida: " + km + "km");
                 graficos.drawString("Kilômetros percorridos: " + km, 5, 30);
                 graficos.setColor(Color.green);
                 graficos.drawString("tempo de execução: " + cv.getTempoExecucao() + "ms", 5, 45);
