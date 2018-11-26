@@ -133,5 +133,10 @@ public class CaixeiroViajante {
     public long getTempoExecucao() {
         return tempoExecucao;
     }
+
+    public static int getKm() {
+        return km;
+    }
+    
     
 }
