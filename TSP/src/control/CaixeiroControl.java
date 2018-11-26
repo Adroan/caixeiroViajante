@@ -42,8 +42,7 @@ public class CaixeiroControl extends JPanel implements ActionListener {
     private boolean gerarSolucao = false;
 
     public CaixeiroControl() {
-        setFocusable(true);
-        setDoubleBuffered(true);
+        setFocusable(false);
 
         ImageIcon referencia = new ImageIcon(Main.class.getResource("/res/branco.png"));
         fundo = referencia.getImage();
